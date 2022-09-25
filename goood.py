@@ -11,6 +11,9 @@ def isChinese(word):
             return True
     return False
 
+def has_childtag(tag):
+    return  tag.findChidren()==[]
+
 class gooodCollectionSpider(SpiderHTML):
     def __init__(self,init_url,pageEnd):
         self.init_url=init_url
@@ -30,9 +33,16 @@ class gooodCollectionSpider(SpiderHTML):
             return hrefs
     
     def collectData(self,hrefs):
+        
         for i in tqdm(range(len(hrefs)),desc="collectData"):
+            text=[]
+            image_src=[]
             url= "https://www.gooood.cn/"+str(hrefs[i])
-            
+            content=self.getUrl(url)
+            p_list=content.find_all('p')
+
+
+
 
     
 
