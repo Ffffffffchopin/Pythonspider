@@ -20,7 +20,7 @@ class SpiderHTML(object):
 
 			else:
 				data = response.read()
-			return BeautifulSoup(data.decode(coding))
+			return BeautifulSoup(data.decode(coding),features='lxml')
 
 	#保存文本内容到本地
 	def saveText(self,filename,content,mode='w'):
