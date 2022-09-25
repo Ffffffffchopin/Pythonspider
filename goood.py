@@ -69,3 +69,4 @@ if __name__=='__main__':
     hrefs=spider.collectLink()
     spider.collectData(hrefs)
     
+
