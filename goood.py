@@ -54,7 +54,7 @@ class gooodCollectionSpider(SpiderHTML):
             for img in img_list:
                 image_src.append(img.attrs['src'])
             text_list.append(p_list)
-            img_list.append(image_src)
+            src_list.append(image_src)
         return text_list,img_list
 
 
@@ -64,7 +64,10 @@ class gooodCollectionSpider(SpiderHTML):
     
 
 if __name__=='__main__':
-    pageEnd=sys.argv[1]
+    if len(sys.argv)==1:
+        pageEnd=sys.argv[1]
+    else:
+        pageEnd=2
     spider=gooodCollectionSpider(init_url,pageEnd)
     hrefs=spider.collectLink()
     print(spider.collectData(hrefs))
