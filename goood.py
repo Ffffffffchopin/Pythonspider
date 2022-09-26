@@ -25,7 +25,7 @@ class gooodCollectionSpider(SpiderHTML):
         
     def collectLink(self):
         hrefs=[]
-        for i in tqdm(range(1,self.pageEnd),desc='collectLink'):
+        for i in tqdm(range(1,int(self.pageEnd)),desc='collectLink'):
             page_url=self.init_url+'/{}'.format(i)
             content=self.getUrl(page_url)
             a_list=content.find_all('a',class_='cover-link',href=True)
@@ -50,7 +50,7 @@ class gooodCollectionSpider(SpiderHTML):
             filter(has_childtag,p_list)
             filter(is_Chinese_p,p_list)
             
-            img_list=content.find_all("img")
+            img_list=content.find_all("img",src=True)
             for img in img_list:
                 image_src.append(img.attrs['src'])
             text_list.append(p_list)
@@ -67,6 +67,6 @@ if __name__=='__main__':
     pageEnd=sys.argv[1]
     spider=gooodCollectionSpider(init_url,pageEnd)
     hrefs=spider.collectLink()
-    spider.collectData(hrefs)
+    print(spider.collectData(hrefs))
     
 
